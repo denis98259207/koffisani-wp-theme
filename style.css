@@ -160,6 +160,39 @@ hr {
 
 pre {
 	overflow: auto;
+    display: block;
+    padding: 9.5px;
+    margin: 0 0 10px;
+    font-size: 13px;
+    line-height: 1.42857143;
+    color: #fff;
+    word-break: break-all;
+    word-wrap: break-word;
+    background-color: #333;
+    border: 1px solid #ccc;
+    border-bottom-right-radius: 6px;
+    border-top-right-radius: 6px;
+    border-bottom-left-radius: 0px;
+    border-top-left-radius: 0px;
+    border-left: 4px solid #e74c3c;
+}
+
+kbd {
+	padding: 2px 4px;
+	font-size: 90%;
+	color: #fff;
+	background-color: #333;
+	border-radius: 3px;
+	-webkit-box-shadow: inset 0 -1px 0 rgba(0,0,0,.25);
+	box-shadow: inset 0 -1px 0 rgba(0,0,0,.25);
+}
+
+code {
+    padding: 2px 4px;
+    font-size: 90%;
+    color: #c7254e;
+    background-color: #f9f2f4;
+    border-radius: 4px;
 }
 
 code,
@@ -268,7 +301,6 @@ textarea {
 	color: #404040;
 	font-family: sans-serif;
 	font-size: 16px;
-	font-size: 1rem;
 	line-height: 1.5;
 }
 
@@ -293,23 +325,41 @@ i {
 }
 
 blockquote {
-	margin: 0 1.5em;
+	background:#EAEAEA;
+    border-left: 3px solid #e74c3c;
+    padding: 20px;
+    margin: 0;
+    position: relative;
+}
+
+cite {
+	font-style: normal;
+}
+
+blockquote p{
+    margin-bottom: 0;
+    font-family: PT sans;
+    font-weight: 400;
+    line-height: 21px;
+    color: #444;
+    position: relative;
+    z-index: 10;
+    font-style: italic;
+    font-weight: 500;
+}
+
+ blockquote::after {
+    font-family: FontAwesome;
+    content: "\f10d";
+    position: absolute;
+    font-size: 60px;
+    top: 10px;
+    left: 5px;
+    color: #F4F4F4;
 }
 
 address {
 	margin: 0 0 1.5em;
-}
-
-pre {
-	background: #eee;
-	font-family: "Courier 10 Pitch", Courier, monospace;
-	font-size: 15px;
-	font-size: 0.9375rem;
-	line-height: 1.6;
-	margin-bottom: 1.6em;
-	max-width: 100%;
-	overflow: auto;
-	padding: 1.6em;
 }
 
 code,
@@ -318,7 +368,6 @@ tt,
 var {
 	font-family: Monaco, Consolas, "Andale Mono", "DejaVu Sans Mono", monospace;
 	font-size: 15px;
-	font-size: 0.9375rem;
 }
 
 abbr,
@@ -355,7 +404,6 @@ body {
 }
 
 blockquote:before,
-blockquote:after,
 q:before,
 q:after {
 	content: "";
@@ -892,4 +940,83 @@ object {
 
 .gallery-caption {
 	display: block;
+}
+
+/* Footer Social
+====================================*/
+.footer_social{
+    float: right;
+}
+.footbot_social {
+    list-style: none outside none;
+    margin: 0 auto;
+    overflow: hidden;
+    padding: 0;
+}
+.footbot_social li {
+    float: left;
+    background: none !important;
+}
+.footbot_social li a {
+    color: #666;
+    display:block;
+    height: 40px;
+    text-align: center;
+    width:35px;
+    -webkit-transition: 0.25s;
+    -moz-transition: 0.25s;
+    -o-transition: 0.25s;
+    transition: 0.25s;
+    margin: 0 2px;
+}
+.footbot_social li a i {
+    font-size: 18px;
+    line-height: 40px;
+    margin-right: 0;
+    float: none;
+}
+.footbot_social li a.fb:hover            {background:#1964DA; border-radius: 5px; color:#fff;}
+.footbot_social li a.twtr:hover          {color: #fff; background:#3ABDD1; border-radius:5px;}
+.footbot_social li a.gmail:hover         {color: #fff;}
+.footbot_social li a.gplus:hover         {color: #fff; background: #D34836; border-radius: 5px;}
+.footbot_social li a.pinterest:hover     {color: #fff;}
+.footbot_social li a.rss:hover           {color: #fff; background:#F15200; border-radius:5px;}
+.footbot_social li a.tumblr:hover        {color: #fff;}
+.footbot_social li a.flickr:hover        {color: #fff;}
+.footbot_social li a.instagram:hover     {color: #fff;}
+.footbot_social li a.linkedin:hover      {color: #fff; background:#0077B5; border-radius:5px;}
+.footbot_social li a.skype:hover         {color: #fff; background:#00AAF1; border-radius:5px;}
+.footbot_social li a.youtube:hover       {color: #fff;}
+.footbot_social li a.dribbble:hover      { color: #fff; background:#F97193; border-radius:5px;}
+
+/* ===================================================== */
+/*  Button Up										 */
+/* ===================================================== */
+.btntoTop {
+    width: 44px;
+    height: 44px;
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background-color: #34495e;
+    border-radius: 2px;
+    text-align: center;
+    line-height: 40px;
+    cursor: pointer;
+    opacity: 0;
+    -webkit-transition: opacity 0.2s ease;
+    transition: opacity 0.2s ease;
+}
+.btntoTop:before {
+    content: "\f106";
+    display: inline-block;
+    vertical-align: middle;
+    font: 20px 'FontAwesome';
+    color: #b8bcc0;
+}
+.btntoTop.active {
+    opacity: 1;
+}
+.btntoTop.active:hover{
+    opacity: 0.8
 }
