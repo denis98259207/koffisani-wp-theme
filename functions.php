@@ -114,7 +114,12 @@ function koffisani_scripts() {
 
 	wp_enqueue_script( 'jquery', get_template_directory_uri() .  '/js/jquery-1.10.2.min.js' );
 
-	wp_enqueue_script( 'bottstrap-script', get_template_directory_uri() .  '/js/bootstrap.min.js' );
+	wp_enqueue_script( 'bootstrap-script', get_template_directory_uri() .  '/js/bootstrap.min.js' );
+
+
+	wp_enqueue_script( 'smartmenus-script', get_template_directory_uri() .  '/js/jquery.smartmenus.min.js' );
+
+	wp_enqueue_script( 'smartmenu-bootstrap-script', get_template_directory_uri() .  '/js/jquery.smartmenus.bootstrap.min.js' );
 
 	wp_enqueue_script( 'koffisani-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '20151215', true );
 
@@ -152,3 +157,12 @@ require get_template_directory() . '/inc/customizer.php';
  * Load Jetpack compatibility file.
  */
 require get_template_directory() . '/inc/jetpack.php';
+
+add_filter( 'get_custom_logo', 'change_logo_class' );
+
+function change_logo_class($html) {
+	$html = str_replace('custom-logo', 'img-circle', $html);
+	$html = str_replace('custom-logo-link', 'img-circle', $html);
+
+	return $html;
+}

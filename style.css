@@ -43,6 +43,8 @@ Nicolas Gallagher and Jonathan Neal http://necolas.github.io/normalize.css/
 	## Galleries
 --------------------------------------------------------------*/
 
+@import url('https://fonts.googleapis.com/css?family=Slabo+27px');
+
 /*--------------------------------------------------------------
 # Normalize
 --------------------------------------------------------------*/
@@ -304,7 +306,11 @@ textarea {
 	line-height: 1.5;
 }
 
-h1,
+h1, h2 > a {
+	font-family: 'Slabo 27px', serif;
+	clear: both;
+}
+
 h2,
 h3,
 h4,
@@ -353,7 +359,7 @@ blockquote p{
     content: "\f10d";
     position: absolute;
     font-size: 60px;
-    top: 10px;
+    top: -5px;
     left: 5px;
     color: #F4F4F4;
 }
