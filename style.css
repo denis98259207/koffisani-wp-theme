@@ -176,7 +176,7 @@ pre {
     border-top-right-radius: 6px;
     border-bottom-left-radius: 0px;
     border-top-left-radius: 0px;
-    border-left: 4px solid #e74c3c;
+    border-left: 4px solid #3498db;
 }
 
 kbd {
@@ -332,7 +332,7 @@ i {
 
 blockquote {
 	background:#EAEAEA;
-    border-left: 3px solid #e74c3c;
+    border-left: 3px solid #3498db;
     padding: 20px;
     margin: 0;
     position: relative;
@@ -592,7 +592,7 @@ a:active {
 	width: 100%;
 }
 
-.main-navigation ul {
+.main-navigation ul, .navbar-nav ul {
 	display: none;
 	list-style: none;
 	margin: 0;
@@ -659,43 +659,250 @@ a:active {
 .main-navigation .current-menu-ancestor > a {
 }
 
-/* Small menu. */
-.menu-toggle,
-.main-navigation.toggled ul {
-	display: block;
+/*
+  Add some SmartMenus required styles not covered in Bootstrap 3's default CSS.
+ These are theme independent and should work with any Bootstrap 3 theme mod.
+*/
+.navbar-nav ul
+{
+    width:100%;
+    min-width:187px!important;
+    padding:0;
+}
+.navbar-nav > li > ul.dropdown-menu
+{
+    top:52px!important;
+}
+.navbar-toggle{
+    background:#303436;
+    border:none;
+    padding:10px 10px;
+    border-radius:3px;
+    margin-top:5px;
+}
+.navbar-default .navbar-toggle:hover, .navbar-default .navbar-toggle:focus{
+    background:#303436;
+}
+.navbar-default .navbar-toggle .icon-bar{
+    background-color:#fff;
+    height:3px;
+}
+.navbar{
+    margin-bottom: 0;
+    background:#323A45;
+    min-height:35px;
+    border:none;
 }
 
-@media screen and (min-width: 37.5em) {
-	.menu-toggle {
-		display: none;
-	}
-	.main-navigation ul {
-		display: block;
-	}
+
+/* sub menus arrows */
+.navbar-nav .sub-arrow, .navbar-nav .collapsible .sub-arrow {
+    position:static;
+    margin-top:0;
+    margin-right:0;
+    margin-left:6px;
+    display:inline-block;
+    width:0;
+    height: 0;
+    overflow:hidden;
+    vertical-align:middle;
+    border-top:4px solid;
+    border-right:4px dashed transparent;
+    border-bottom:4px dashed transparent;
+    border-left:4px dashed transparent;
+}
+.navbar-nav > li > .has-submenu .sub-arrow {
+    display: inline-block;
+    font-family: FontAwesome;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    width:8px;
+    height: 8px;
+    line-height: 8px;
+    border-width: 0px;
+}
+.navbar-nav > li > .has-submenu .sub-arrow:before {
+    content: "\f107";
+}
+.navbar-nav ul .sub-arrow {
+    position:absolute;
+    right:0;
+    margin-top:6px;
+    margin-right:15px;
+    border-top:4px dashed transparent;
+    border-bottom:4px dashed transparent;
+    border-left:4px solid;
+}
+.navbar-nav ul a.has-submenu {
+    padding-right:30px;
+}
+.navbar-default .navbar-collapse, .navbar-default .navbar-form{
+    border-color: transparent;
+}
+/* scrolling arrows for tall menus */
+.navbar-nav span.scroll-up, .navbar-nav span.scroll-down {
+    position:absolute;
+    display:none;
+    visibility:hidden;
+    height:20px;
+    overflow:hidden;
+    text-align:center;
+}
+.navbar-nav span.scroll-up-arrow, .navbar-nav span.scroll-down-arrow {
+    position:absolute;
+    top:-2px;
+    left:50%;
+    margin-left:-8px;
+    width:0;
+    height:0;
+    overflow:hidden;
+    border-top:7px dashed transparent;
+    border-right:7px dashed transparent;
+    border-bottom:7px solid;
+    border-left:7px dashed transparent;
+}
+.navbar-nav{
+    border-right: 1px solid #19222d;
+    border-left: 1px solid #425166;
+}
+.navbar-nav span.scroll-down-arrow {
+    top:6px;
+    border-top:7px solid;
+    border-right:7px dashed transparent;
+    border-bottom:7px dashed transparent;
+    border-left:7px dashed transparent;
+}
+.navbar-default .navbar-nav li a{
+    color:#555;
+    text-transform:uppercase;
+    font-size: 13px;
+    font-weight: 600;
+    line-height:15px;
+}
+.navbar-default .navbar-nav > li{
+    border-left: 1px solid #19222d;
+    border-right: 1px solid #425166;
+}
+.navbar-default .navbar-nav > li > a{
+    padding:14px 25px;
+    color:#fff;
+}
+.navbar-nav > li > a:hover,.navbar-nav > li > a:focus,.navbar-nav > li.active > a,
+.navbar-default .navbar-nav > .active > a,
+.navbar-default .navbar-nav > .active > a:hover,
+.navbar-default .navbar-nav > .active > a:focus,
+.navbar-default .navbar-nav > .open > a,
+.navbar-default .navbar-nav > .open > a:hover,
+.navbar-default .navbar-nav > .open > a:focus,
+.navbar-default .navbar-nav .open .dropdown-menu > .active > a,
+.navbar-default .navbar-nav .open .dropdown-menu > .active > a:hover,
+.navbar-default .navbar-nav .open .dropdown-menu > .active > a:focus,
+.navbar-default .navbar-nav .open .dropdown-menu > .disabled > a,
+.navbar-default .navbar-nav .open .dropdown-menu > .disabled > a:hover,
+.navbar-default .navbar-nav .open .dropdown-menu > .disabled > a:focus
+{
+    background:#3498db!important;
+    color:#fff!important;
+}
+/* add more indentation for 2+ level sub in collapsible mode - Bootstrap normally supports just 1 level sub menus */
+.navbar-nav .collapsible ul .dropdown-menu > li > a, 
+.navbar-nav .collapsible ul .sub-menu > li > a,
+.navbar-nav .collapsible ul .dropdown-menu .dropdown-header {
+    padding-left:35px;
+}
+.navbar-nav .collapsible ul ul .dropdown-menu > li > a,
+.navbar-nav .collapsible ul ul .sub-menu > li > a,
+.navbar-nav .collapsible ul ul .dropdown-menu .dropdown-header {
+    padding-left:45px;
+}
+.navbar-nav .collapsible ul ul ul .dropdown-menu > li > a,
+.navbar-nav .collapsible ul ul ul .sub-menu > li > a,
+.navbar-nav .collapsible ul ul ul .dropdown-menu .dropdown-header {
+    padding-left:55px;
+}
+.navbar-nav .collapsible ul ul ul ul .dropdown-menu > li > a,
+.navbar-nav .collapsible ul ul ul ul .sub-menu > li > a,
+.navbar-nav .collapsible ul ul ul ul .dropdown-menu .dropdown-header {
+    padding-left:65px;
+}
+/* fix SmartMenus sub menus auto width (subMenusMinWidth and subMenusMaxWidth options) */
+
+.navbar-nav > li > ul:before{
+    content:"";
+    position:absolute;
+    border:11px solid transparent;
+    border-bottom-color:#3498db;
+    top:-22px;
+    left:36%;
+}
+.navbar-nav > li ul > li:first-child
+{
+    border-top:2px solid #3498db;
 }
 
-.site-main .comment-navigation,
-.site-main .posts-navigation,
-.site-main .post-navigation {
-	margin: 0 0 1.5em;
-	overflow: hidden;
+.navbar-nav .dropdown-menu > li > a,
+.navbar-nav .sub-menu > li > a {
+    white-space:normal;
+    font-size: 13px;
+    padding:12px 20px;
+    border-bottom:1px solid #e4e4e4;
+}
+.navbar-nav .dropdown-menu > li > a:hover,
+.navbar-nav .sub-menu > li > a:hover
+{
+    color:#3498db;
+}
+.navbar-nav ul.sm-nowrap > li > a {
+    white-space:nowrap;
+}
+/* The following will make the sub menus collapsible for small screen devices (it's not recommended editing these) */
+.navbar-nav .collapsible ul {display:none;position:static !important;top:auto !important;left:auto !important;margin-left:0 !important;margin-top:0 !important;width:auto !important;min-width:0 !important;max-width:none !important;}
+.navbar-nav .collapsible ul.sm-nowrap > li > a {white-space:normal;}
+.navbar-nav .collapsible iframe{display:none;}
+/* disable Bootstrap 3's global box-sizing:border-box; for the menus as it doesn't play nice with SmartMenus */
+ul.sm li *,ul.sm li *:before,ul.sm li *:after{-moz-box-sizing:content-box;-webkit-box-sizing:content-box;box-sizing:content-box;}
+
+.nav .open > a,
+.nav .open > a:hover,
+.nav .open > a:focus
+{
+    border-color:transparent!important;
+}
+.dropdown-menu > .active > a,
+.sub-menu > .active > a,
+.dropdown-menu > .active > a:hover,
+.sub-menu > .active > a:hover,
+.dropdown-menu > .active > a:focus,
+.sub-menu > .active > a:focus{
+    background-color:#fff ;
 }
 
-.comment-navigation .nav-previous,
-.posts-navigation .nav-previous,
-.post-navigation .nav-previous {
-	float: left;
-	width: 50%;
+.navbar-nav > li > a:hover,.navbar-nav > li > a:focus,.navbar-nav > li.active > a,
+.navbar-default .navbar-nav > .active > a,
+.navbar-default .navbar-nav > .active > a:hover,
+.navbar-default .navbar-nav > .active > a:focus,
+.navbar-default .navbar-nav > .open > a,
+.navbar-default .navbar-nav > .open > a:hover,
+.navbar-default .navbar-nav > .open > a:focus,
+.navbar-default .navbar-nav .open .dropdown-menu > .active > a,
+.navbar-default .navbar-nav .open .dropdown-menu > .active > a:hover,
+.navbar-default .navbar-nav .open .dropdown-menu > .active > a:focus,
+.navbar-default .navbar-nav .open .dropdown-menu > .disabled > a,
+.navbar-default .navbar-nav .open .dropdown-menu > .disabled > a:hover,
+.navbar-default .navbar-nav .open .dropdown-menu > .disabled > a:focus
+{
+    background:#3498db !important;
 }
 
-.comment-navigation .nav-next,
-.posts-navigation .nav-next,
-.post-navigation .nav-next {
-	float: right;
-	text-align: right;
-	width: 50%;
+@media only screen and (max-width: 767px) {
+    .navbar-default .navbar-nav .open .dropdown-menu > li > a:hover,
+    .navbar-default .navbar-nav .open .sub-menu > li > a:hover,
+    .navbar-default .navbar-nav .open .dropdown-menu > li > a:focus
+    {
+        background:#3498db;
+    }
 }
-
 /*--------------------------------------------------------------
 # Accessibility
 --------------------------------------------------------------*/
