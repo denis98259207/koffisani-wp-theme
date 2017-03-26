@@ -995,21 +995,25 @@ ul.sm li *,ul.sm li *:before,ul.sm li *:after{-moz-box-sizing:content-box;-webki
 /*--------------------------------------------------------------
 # Widgets - Sidebar
 --------------------------------------------------------------*/
-.widget {
+/*.widget {
 	margin: 0 0 1.5em;
 }
-
+*/
 /* Make sure select elements fit in widgets. */
-.widget select {
+/*.widget select {
 	max-width: 100%;
-}
+}*/
 
 aside .widget {
 	display: block;
-	float: left;
 	height: 100%;
 	margin-bottom: 30px;
+	margin-top: 30px;
 	position: relative;
+}
+
+.widget-title {
+	margin-top: 30px;
 }
 
 aside .widget ul {
