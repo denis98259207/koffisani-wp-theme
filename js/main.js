@@ -18,4 +18,11 @@ jQuery(document).ready(function ($) {
             else
                 $('.btntoTop').removeClass('active');
         });
+
+    $("body").tooltip({
+        selector: '[data-toggle="tooltip"]'
+    });
+
+    $(".sub-menu").addClass("dropdown-menu");
 });
+

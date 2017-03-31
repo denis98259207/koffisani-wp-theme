@@ -24,26 +24,24 @@
 	<a class="skip-link screen-reader-text" href="#content"><?php esc_html_e( 'Skip to content', 'koffisani' ); ?></a>
 
 
-                    <header id="masthead" class="site-header" role="banner">
-						<div class="site-branding clearfix" id="logo-bar">
+                    <header id="header" class="clearfix" role="banner">
+						<div class="clearfix" id="logo-bar">
 							<div class="container">
 								<div class="row">
 									<div class="col-xs-12 text-center">
-										<div class="row clearfix">
-											<div class="site-logo">
-												<div class="screen-reader-text">
-													<?php printf(esc_html__("Aller à l'accueil de %1$s", 'koffisani'), bloginfo( 'name' )) ; ?>
-												</div>
-												<div class="col-xs-4"></div>
-												<div class="site-firstletter col-xs-4" aria-hidden="true">
-													<?php if ( has_custom_logo() ) {
-														the_custom_logo();
-													} else { ?>
-													<h1><?= substr(get_bloginfo( 'name' ), 0, 1) ?></h1>
-													<?php } ?>
-												</div>
-												<div class="col-xs-4"></div>
+										<div class="site-logo" id="logo">
+											<div class="screen-reader-text">
+												<?php printf(esc_html__("Aller à l'accueil de %1$s", 'koffisani'), bloginfo( 'name' )) ; ?>
 											</div>
+											<div class="col-xs-4"></div>
+											<div class="site-firstletter col-xs-4" aria-hidden="true">
+												<?php if ( has_custom_logo() ) {
+													the_custom_logo();
+												} else { ?>
+												<h1><?= substr(get_bloginfo( 'name' ), 0, 1) ?></h1>
+												<?php } ?>
+											</div>
+											<div class="col-xs-4"></div>
 											<?php
 											if ( is_front_page() && is_home() ) : ?>
 												<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
@@ -66,18 +64,24 @@
 	            			<div class="container">
 	                			<div class="row">
 
-									<nav id="site-navigation" class="main-navigation" role="navigation">
-										<button class="menu-toggle navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="primary-menu" aria-expanded="false"><?php //esc_html_e( 'Primary Menu', 'koffisani' ); ?>
+									<div class="navbar-header">
+										<button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="primary-menu" aria-expanded="false"><?php //esc_html_e( 'Primary Menu', 'koffisani' ); ?>
 											<span class="sr-only">Basculer la navigation</span>
 				                            <span class="icon-bar"></span>
 				                            <span class="icon-bar"></span>
 				                            <span class="icon-bar"></span>
 										</button>
-										<div class="navbar-collapse collapse">
-											<?php wp_nav_menu( array( 'theme_location' => 'menu-1', 'menu_id' => 'primary-menu' ) ); ?>
-										</div>
-									</nav><!-- #site-navigation -->
-								</div>
+
+									</div>
+									<div class="navbar-collapse collapse">
+										<?php wp_nav_menu( array( 
+										'theme_location' => 'menu-1', 
+										'menu_id' => 'primary-menu',
+										'menu_class' => 'nav navbar-nav' 
+										) ); ?>
+									</div>
+								</div><!-- #site-navigation -->
+								
 							</div>
 						</div>
 					</header><!-- #masthead -->

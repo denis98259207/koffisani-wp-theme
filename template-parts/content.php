@@ -18,6 +18,16 @@
 			the_title( '<h2 class="entry-title"><a href="' . esc_url( get_permalink() ) . '" rel="bookmark">', '</a></h2>' );
 		endif;
 
+		if(has_post_thumbnail($id)) : ?>
+            <figure class="post_img">
+                <?php
+                        // Post thumbnail.
+                the_post_thumbnail();
+                
+                        ?>
+            </figure>
+        <?php endif;
+
 		if ( 'post' === get_post_type() ) : ?>
 		<div class="entry-meta">
 			<?php koffisani_posted_on(); ?>
