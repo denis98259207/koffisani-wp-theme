@@ -38,7 +38,8 @@
 
 	<div class="entry-content">
 		<?php
-			the_content( sprintf(
+		if( is_single()) {	
+                the_content( sprintf(
 				/* translators: %s: Name of current post. */
 				wp_kses( __( 'Continue reading %s <span class="meta-nav">&rarr;</span>', 'koffisani' ), array( 'span' => array( 'class' => array() ) ) ),
 				the_title( '<span class="screen-reader-text">"', '"</span>', false )
@@ -48,6 +49,12 @@
 				'before' => '<div class="page-links">' . esc_html__( 'Pages:', 'koffisani' ),
 				'after'  => '</div>',
 			) );
+                } else {
+                    the_excerpt_embed();
+                    ?>
+            <a class="btn btn-small btn-default" href="<?= the_permalink() ?>">Lire plus <i class="fa fa-angle-double-right"></i></a>
+            <?php 
+                }
 		?>
 	</div><!-- .entry-content -->
 

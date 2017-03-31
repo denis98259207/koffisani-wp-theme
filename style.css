@@ -473,8 +473,7 @@ table {
 --------------------------------------------------------------*/
 button,
 input[type="button"],
-input[type="reset"],
-input[type="submit"] {
+input[type="reset"] {
 	border: 1px solid;
 	border-color: #ccc #ccc #bbb;
 	border-radius: 3px;
@@ -488,8 +487,7 @@ input[type="submit"] {
 
 button:hover,
 input[type="button"]:hover,
-input[type="reset"]:hover,
-input[type="submit"]:hover {
+input[type="reset"]:hover {
 	border-color: #ccc #bbb #aaa;
 }
 
@@ -499,8 +497,7 @@ input[type="reset"]:focus,
 input[type="submit"]:focus,
 button:active,
 input[type="button"]:active,
-input[type="reset"]:active,
-input[type="submit"]:active {
+input[type="reset"]:active {
 	border-color: #aaa #bbb #bbb;
 }
 
@@ -550,8 +547,61 @@ textarea:focus {
 }
 
 textarea {
-	width: 100%;
+    resize: vertical;
+    width:100%;
 }
+.form-control {
+    height: 46px;
+    border-radius:0;
+    padding: 12px;
+    margin-bottom: 10px;
+}
+.form-control:focus,#site-searchform #s:focus
+{
+    border-color: #3498db;
+    box-shadow:0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(231, 76, 60, 0.6);
+    outline:none;
+}
+
+.btn.btn-default,
+.tp-caption.modern_big_redbg,
+.tp-caption.medium_bg_red,
+.dropcap_block.default,
+.btn.btn-default.dark:hover,
+.btn.btn-default.dark:focus,
+.btn-group:focus .btn.btn-default.dark.dropdown-toggle,
+.icon_lists .fa-hover a:hover,
+#site-searchform #searchsubmit,
+.tags li a:hover,
+.shares li a:hover
+{
+	background-color:#3498db;
+}
+
+.btn-default:hover,.theme-color-pt .btn-default:hover
+{
+	color: #fff;
+	background-color:#257FBF;
+}
+
+.btn-default{
+    background:#E74C3C;
+    color:#fff;
+    border:none;
+    border-radius:2px;
+    transition:all 0.3s ease-in-out;
+    -webkit-transition:all 0.3s ease-in-out;
+    -moz-transition:all 0.3s ease-in-out;
+    -ms-transition:all 0.3s ease-in-out;
+    -o-transition:all 0.3s ease-in-out;
+}
+
+.btn-lg, .btn-group-lg > .btn {
+	padding: 10px 16px;
+	font-size: 18px;
+	line-height: 1.33;
+}
+
 
 /*--------------------------------------------------------------
 # Navigation
@@ -563,9 +613,9 @@ a {
 	color: royalblue;
 }
 
-a:visited {
+/*a:visited {
 	color: purple;
-}
+}*/
 
 a:hover,
 a:focus,

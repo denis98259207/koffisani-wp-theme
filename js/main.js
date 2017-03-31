@@ -24,5 +24,8 @@ jQuery(document).ready(function ($) {
     });
 
     $(".sub-menu").addClass("dropdown-menu");
+    //$("#comment").addClass("form-control");
+    //$("#submit").addClass("btn btn-lg btn-default");
+    //$("#author, #email, #url").addClass("col-lg-4 col-md-4 form-control").wrap("<div class='col-sm-4'></div>");
 });
 

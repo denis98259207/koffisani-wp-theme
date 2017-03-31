@@ -20,7 +20,7 @@ if ( post_password_required() ) {
 }
 ?>
 
-<div id="comments" class="comments-area col-xs-12 col-sm-8 col-md-8 col-lg-8">
+<div id="comments" class="comments-area col-xs-12 col-sm-12 col-md-12 col-lg-12">
 
 	<?php
 	// You can start editing here -- including this comment!
@@ -79,7 +79,7 @@ if ( post_password_required() ) {
 	<?php
 	endif;
 
-	comment_form();
+	koffisani_comment_form();
 	?>
 
 </div><!-- #comments -->

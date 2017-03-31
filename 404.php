@@ -4,24 +4,28 @@
  *
  * @link https://codex.wordpress.org/Creating_an_Error_404_Page
  *
- * @package koffisani
+ * @package micronium
+ * 
+ * @author Koffi Sani <koffisani@gmail.com>
  */
 
 get_header(); ?>
 
-	<div id="primary" class="content-area  col-xs-12 col-sm-8 col-md-8 col-lg-8">
-		<main id="main" class="site-main" role="main">
-
-			<section class="error-404 not-found">
-				<header class="page-header">
-					<h1 class="page-title"><?php esc_html_e( 'Oops! That page can&rsquo;t be found.', 'koffisani' ); ?></h1>
-				</header><!-- .page-header -->
-
+			<section class="content not_found">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-sm-12 col-lg-12 col-md-12">
+                                        <div class="page_404">
+                                            <h1>404</h1>
+                                            <p><?php esc_html_e( 'Oops! Cette page ne peut être trouvée.', 'micronium' ); ?></p>
+                                        </div>
+                                    </div>
+                                </div>
 				<div class="page-content">
-					<p><?php esc_html_e( 'It looks like nothing was found at this location. Maybe try one of the links below or a search?', 'koffisani' ); ?></p>
+					<p><?php esc_html_e( 'Il semble que rien ne se trouve à cet endroit. Peut-être, faut-il essayer une recherche ?', 'micronium' ); ?></p>
 
 					<?php
-						get_search_form();
+						//micronium_get_search_form();
 
 						the_widget( 'WP_Widget_Recent_Posts' );
 
@@ -30,7 +34,7 @@ get_header(); ?>
 					?>
 
 					<div class="widget widget_categories">
-						<h2 class="widget-title"><?php esc_html_e( 'Most Used Categories', 'koffisani' ); ?></h2>
+						<h2 class="widget-title"><?php esc_html_e( 'Most Used Categories', 'micronium' ); ?></h2>
 						<ul>
 						<?php
 							wp_list_categories( array(
@@ -48,17 +52,17 @@ get_header(); ?>
 						endif;
 
 						/* translators: %1$s: smiley */
-						$archive_content = '<p>' . sprintf( esc_html__( 'Try looking in the monthly archives. %1$s', 'koffisani' ), convert_smilies( ':)' ) ) . '</p>';
+						$archive_content = '<p>' . sprintf( esc_html__( 'Essayez de chercher dans les archives mensuels. %1$s', 'micronium' ), convert_smilies( ':)' ) ) . '</p>';
 						the_widget( 'WP_Widget_Archives', 'dropdown=1', "after_title=</h2>$archive_content" );
 
 						the_widget( 'WP_Widget_Tag_Cloud' );
 					?>
 
 				</div><!-- .page-content -->
+                            </div><!-- Container -->
 			</section><!-- .error-404 -->
 
-		</main><!-- #main -->
-	</div><!-- #primary -->
+		
 
 <?php
 get_footer();
