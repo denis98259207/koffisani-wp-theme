@@ -22,10 +22,15 @@ jQuery(document).ready(function ($) {
     $("body").tooltip({
         selector: '[data-toggle="tooltip"]'
     });
-
+    /* Ajoute la classe .dropdown-menu */
     $(".sub-menu").addClass("dropdown-menu");
-    //$("#comment").addClass("form-control");
-    //$("#submit").addClass("btn btn-lg btn-default");
-    //$("#author, #email, #url").addClass("col-lg-4 col-md-4 form-control").wrap("<div class='col-sm-4'></div>");
+    /** Insère la flèche au debut de chaque liste **/
+    $('.widget_recent_entries ul li a').before('<i class="fa fa-angle-right"></i>');
+    $('.widget_archive ul li a').before('<i class="fa fa-angle-right"></i>');
+    $('.widget_categories ul li a').before('<i class="fa fa-angle-right"></i>');
+    $('.widget_meta ul li a').before('<i class="fa fa-angle-right"></i>');
+    $('.widget_recent_comments ul li a:first-child').before('<i class="fa fa-angle-right"></i>');
+
+    //$('.widget').addClass("clearfix");
 });
 
