@@ -195,3 +195,32 @@ function change_logo_class($html) {
 		return apply_filters( 'embed_gist', $embed, $matches, $attr, $url, $rawattr );
 		
 	}
+    /**
+     * 
+     * @param type $contactmethods
+     * @return string
+     */    
+            
+        function my_new_contactmethods($contactmethods) {
+            # Twitter
+            $contactmethods['twitter'] = 'Twitter username';
+            
+            # Facebook
+            $contactmethods['facebook'] = 'URL Facebook commençant par https';
+            
+            # Linkedin
+            $contactmethods['linkedin'] = 'URL LinkedIn  commençant par https';
+            
+            # Skype
+            $contactmethods['skype'] = 'Skype';
+            
+            $contactmethods['github'] = 'Identifiant Github';
+            
+            $contactmethods['gitlab'] = "Identifiant GitLab";
+            
+            $contactmethods['gplus'] = "URL Google Plus" ;
+            
+            return $contactmethods;
+        }
+        
+        add_filter('user_contactmethods', 'my_new_contactmethods', 10, 1);

@@ -21,10 +21,51 @@
 
 <body <?php body_class(); ?>>
 <div id="page" class="site">
-	<a class="skip-link screen-reader-text" href="#content"><?php esc_html_e( 'Skip to content', 'koffisani' ); ?></a>
-
-
-                    <header id="header" class="clearfix" role="banner">
+    <a class="skip-link screen-reader-text" href="#content"><?php esc_html_e( 'Skip to content', 'koffisani' ); ?></a>
+    <header id="header" class="clearfix" role="banner">
+        <div id="top-bar">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-7 hidden-xs top-info">
+                        <!--span><i class="fa fa-phone"></i>Phone: (123) 456-7890</span>
+                        <span><i class="fa fa-envelope"></i>Email: mail@example.com</span-->
+                    </div>
+                    <div class="col-sm-5 top-info ">
+                        <ul>
+                            <?php $twtr = get_the_author_meta('twitter');
+                            if(isset($twtr)) : ?>
+                            <li><a href="https://twitter.com/<?= $twtr ?>" class="my-tweet"><i class="fa fa-twitter"></i></a></li>
+                            <?php endif; 
+                            $fb = get_the_author_meta('facebook');
+                            if(isset($fb)) : ?>
+                            <li><a href="" class="my-facebook"><i class="fa fa-facebook"></i></a></li>
+                            <?php endif; 
+                            $skype = get_the_author_meta('skype');
+                            if(isset($skype)) : ?>
+                            <li><a href="" class="my-skype"><i class="fa fa-skype"></i></a></li>
+                            <?php endif; 
+                            $pinterest = get_the_author_meta('pinterest');
+                            if(isset($pinterest) && !empty($pinterest)) : ?>
+                            <li><a href="" class="my-pint"><i class="fa fa-pinterest"></i></a></li>
+                            <?php endif; 
+                            $gplus = get_the_author_meta('gplus');
+                            if(isset($gplus)) : ?>
+                            <li><a href="" class="my-google"><i class="fa fa-google-plus"></i></a></li>
+                            <?php endif; 
+                            $gh = get_the_author_meta('github');
+                            if(isset($gh)) : ?>
+                            <li><a href="" class="my-github"><i class="fa fa-github"></i></a></li>
+                            <?php endif; 
+                            $gl = get_the_author_meta('gitlab');
+                            if(isset($gl)) : ?>
+                            <li><a href="" class="my-gitlab"><i class="fa fa-gitlab"></i></a></li>
+                            <?php endif; ?>
+                            <li><a href="<?= bloginfo('rss_url') ?>" class="my-rss"><i class="fa fa-rss"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
 						<div class="clearfix" id="logo-bar">
 							<div class="container">
 								<div class="row">

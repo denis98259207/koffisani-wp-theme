@@ -30,7 +30,9 @@ jQuery(document).ready(function ($) {
     $('.widget_categories ul li a').before('<i class="fa fa-angle-right"></i>');
     $('.widget_meta ul li a').before('<i class="fa fa-angle-right"></i>');
     $('.widget_recent_comments ul li a:first-child').before('<i class="fa fa-angle-right"></i>');
-
+    var htmlsearch = $('.search-form label').html();
+    console.log(htmlsearch);
+    $('.search-form label').replaceWith(htmlsearch);
     //$('.widget').addClass("clearfix");
 });
 
