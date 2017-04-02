@@ -47,6 +47,8 @@ function koffisani_setup() {
 	// This theme uses wp_nav_menu() in one location.
 	register_nav_menus( array(
 		'menu-1' => esc_html__( 'Primary', 'koffisani' ),
+                'social-header' => esc_html__( 'Social head', 'koffisani' ),
+                'social-footer' => esc_html__( 'Social footer', 'koffisani' ),
 	) );
 
 	/*
@@ -224,3 +226,122 @@ function change_logo_class($html) {
         }
         
         add_filter('user_contactmethods', 'my_new_contactmethods', 10, 1);
+        
+    /**
+     * Social links globally
+     */
+        
+        
+    add_action("admin_menu", "add_custom_info_menu_item");
+    
+    
+    function add_custom_info_menu_item(){
+	
+	add_options_page("Liens sociaux", "Liens sociaux", "manage_options", "social-links-info", "koffisani_settings_page");
+	
+    }
+    
+    
+    //add_action ("admin_init", "display_custom_info_fields");
+    add_action("admin_init", "display_custom_info_fields");
+    
+    function display_custom_info_fields () {
+        add_settings_section( "section", "Liens sociaux", null, "theme-options");
+        
+        add_settings_field("facebook_url", "Facebook", 'display_facebook_element', "theme-options", 'section');
+        add_settings_field("twitter_username", "Twitter", 'display_twitter_element', "theme-options", 'section');
+        add_settings_field("github_username", "Github", 'display_github_element', "theme-options", 'section');
+        add_settings_field("gitlab_username", "Gitlab", 'display_gitlab_element', "theme-options", 'section');
+        add_settings_field("linkedin_url", "LinedIn", 'display_linkedin_element', "theme-options", 'section');
+        add_settings_field("gplus_url", "Google Plus", 'display_gplus_element', "theme-options", 'section');
+        add_settings_field("instagram_username", "Instagram", 'display_instagram_element', "theme-options", 'section');
+        add_settings_field("skype", "Skype", 'display_skype_element', "theme-options", 'section');
+        
+        register_setting("section", "facebook_url");
+        register_setting("section", 'twitter_username');
+        register_setting("section", 'instagrame_username');
+        register_setting("section", 'linkedin_url');
+        register_setting("section", 'gplus_url');
+        register_setting("section", 'skype');
+        register_setting("section", 'github_username');
+        register_setting("section", 'gitlab_username');
+    }
+    
+    
+    function koffisani_settings_page() {
+        if ( !current_user_can('manage_options')) {
+            wp_die( __( 'Vous n\'avez les droits nécessaires pour affectuer cette action.', 'koffisani' ));
+        }
+        ?>
+        <div class="wrap">
+            <h1>Liens sociaux</h1>
+            <p>Ces liens sont utilisées globalement sur le site</p>
+            <form method="post" action="options.php">
+                <?php 
+                settings_fields( 'section' );
+                do_settings_sections( 'theme-options' );
+                submit_button();
+                ?>
+            </form>
+        </div>
+    <?php
+    }
+    
+    function display_facebook_element() {
+        ?>
+        <input type="url" name="facebook_url" placeholder="Entrer votre lien Facebook" value="<?= get_option('facebook_url') ?>" size="35"/>
+    <?php
+    }
+    
+    
+    function display_twitter_element() {
+        ?>
+        <input type="text" name="twitter_username" placeholder="Entrer votre Twitter username" value="<?= get_option('twitter_username') ?>" size="35"/>
+    <?php
+    }
+    
+    
+    function display_github_element() {
+        ?>
+        <input type="text" name="github_username" placeholder="Entrer votre Github username" value="<?= get_option('github_username') ?>" size="35"/>
+    <?php
+    }
+    
+    
+    function display_gitlab_element() {
+        ?>
+        <input type="text" name="gitlab_username" placeholder="Entrer votre Gitlab username" value="<?= get_option('gitlab_username') ?>" size="35"/>
+    <?php
+    }
+    
+    
+    function display_linkedin_element() {
+        ?>
+        <input type="url" name="linkedin_url" placeholder="Entrer votre lien Linkedin" value="<?= get_option('linkedin_url') ?>" size="35"/>
+    <?php
+    }
+    
+    
+    function display_gplus_element() {
+        ?>
+        <input type="url" name="gplus_url" placeholder="Entrer votre lien Google Plus" value="<?= get_option('gplus_url') ?>" size="35"/>
+    <?php
+    }
+    
+    function display_instagram_element() {
+        ?>
+        <input type="url" name="instagram_username" placeholder="Entrer votre Instagram Username" value="<?= get_option('instagram_username') ?>" size="35"/>
+    <?php
+    }
+    
+        
+    function display_skype_element() {
+        ?>
+        <input type="url" name="instagram_username" placeholder="Entrer votre Instagram Username" value="<?= get_option('instagram_username') ?>" size="35"/>
+    <?php
+    }
+    
+    
+    
+
+    
