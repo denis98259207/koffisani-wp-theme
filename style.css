@@ -1755,6 +1755,7 @@ a.back_home {
 .top-info li:hover a                {color:#fff!important;}
 .top-info li:hover a.my-tweet       {background:#3ABDD1;}
 .top-info li:hover a.my-facebook    {background:#648CD5;}
+.top-info li:hover a.my-linkedin    {background:#0077B5;}
 .top-info li:hover a.my-skype       {background:#00AFFF;}
 .top-info li:hover a.my-pint        {background:#DE5656;}
 .top-info li:hover a.my-rss         {background:#EF8D1F;}

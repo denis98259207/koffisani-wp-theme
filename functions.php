@@ -259,7 +259,7 @@ function change_logo_class($html) {
         
         register_setting("section", "facebook_url");
         register_setting("section", 'twitter_username');
-        register_setting("section", 'instagrame_username');
+        register_setting("section", 'instagram_username');
         register_setting("section", 'linkedin_url');
         register_setting("section", 'gplus_url');
         register_setting("section", 'skype');
@@ -330,14 +330,14 @@ function change_logo_class($html) {
     
     function display_instagram_element() {
         ?>
-        <input type="url" name="instagram_username" placeholder="Entrer votre Instagram Username" value="<?= get_option('instagram_username') ?>" size="35"/>
+        <input type="text" name="instagram_username" placeholder="Entrer votre Instagram Username" value="<?= get_option('instagram_username') ?>" size="35"/>
     <?php
     }
     
         
     function display_skype_element() {
         ?>
-        <input type="url" name="instagram_username" placeholder="Entrer votre Instagram Username" value="<?= get_option('instagram_username') ?>" size="35"/>
+        <input type="text" name="instagram_username" placeholder="Entrer votre Instagram Username" value="<?= get_option('instagram_username') ?>" size="35"/>
     <?php
     }
     

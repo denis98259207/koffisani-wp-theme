@@ -38,11 +38,15 @@
                             <?php endif; 
                             $fb = get_option('facebook_url');
                             if(isset($fb) && !empty($fb)) : ?>
-                            <li><a href="" class="my-facebook"><i class="fa fa-facebook"></i></a></li>
-                            <?php endif; 
+                            <li><a href="<?= $fb ?>" class="my-facebook"><i class="fa fa-facebook"></i></a></li>
+                            <?php endif;
+                            $in = get_option('linkedin_url');
+                            if(isset($in) && !empty($in)) : ?>
+                            <li><a href="<?= $in ?>" class="my-linkedin"><i class="fa fa-linkedin"></i></a></li>
+                            <?php endif;
                             $skype = get_option('skype');
                             if(isset($skype) && !empty($skype)) : ?>
-                            <li><a href="" class="my-skype"><i class="fa fa-skype"></i></a></li>
+                            <li><a href="skype:<?= $skype ?>" class="my-skype"><i class="fa fa-skype"></i></a></li>
                             <?php endif; 
                             $pinterest = get_option('pinterest');
                             if(isset($pinterest) && !empty($pinterest)) : ?>
