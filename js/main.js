@@ -34,6 +34,9 @@ jQuery(document).ready(function ($) {
     $('.nav-previous a').addClass('col-md-5 btn btn-lg btn-default');
     $('.nav-next a').addClass('col-md-5 btn btn-lg btn-default');
     $('.nav-links').wrap("<div class='row' />");
+    var htmlsearch = $('.search-form label').html();
+    console.log(htmlsearch);
+    $('.search-form label').replaceWith(htmlsearch);
     //$('.widget').addClass("clearfix");
 });
 

@@ -21,10 +21,51 @@
 
 <body <?php body_class(); ?>>
 <div id="page" class="site">
-	<a class="skip-link screen-reader-text" href="#content"><?php esc_html_e( 'Skip to content', 'koffisani' ); ?></a>
-
-
-                    <header id="header" class="clearfix" role="banner">
+    <a class="skip-link screen-reader-text" href="#content"><?php esc_html_e( 'Skip to content', 'koffisani' ); ?></a>
+    <header id="header" class="clearfix" role="banner">
+        <div id="top-bar">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-7 hidden-xs top-info">
+                        <!--span><i class="fa fa-phone"></i>Phone: (123) 456-7890</span>
+                        <span><i class="fa fa-envelope"></i>Email: mail@example.com</span-->
+                    </div>
+                    <div class="col-sm-5 top-info ">
+                        <ul>
+                            <?php $twtr = get_option('twitter_username');
+                            if(isset($twtr) && !empty($twtr)) : ?>
+                            <li><a href="https://twitter.com/<?= $twtr ?>" class="my-tweet"><i class="fa fa-twitter"></i></a></li>
+                            <?php endif; 
+                            $fb = get_option('facebook_url');
+                            if(isset($fb) && !empty($fb)) : ?>
+                            <li><a href="" class="my-facebook"><i class="fa fa-facebook"></i></a></li>
+                            <?php endif; 
+                            $skype = get_option('skype');
+                            if(isset($skype) && !empty($skype)) : ?>
+                            <li><a href="" class="my-skype"><i class="fa fa-skype"></i></a></li>
+                            <?php endif; 
+                            $pinterest = get_option('pinterest');
+                            if(isset($pinterest) && !empty($pinterest)) : ?>
+                            <li><a href="" class="my-pint"><i class="fa fa-pinterest"></i></a></li>
+                            <?php endif; 
+                            $gplus = get_option('gplus_url');
+                            if(isset($gplus) && !empty($gplus)) : ?>
+                            <li><a href="<?= $gplus ?>" class="my-google"><i class="fa fa-google-plus"></i></a></li>
+                            <?php endif; 
+                            $gh = get_option('github_username');
+                            if(isset($gh) && !empty($gh)) : ?>
+                            <li><a href="https://github.com/<?= $gh ?>" class="my-github"><i class="fa fa-github"></i></a></li>
+                            <?php endif; 
+                            $gl = get_option('gitlab_username');
+                            if(isset($gl) && !empty($gl)) : ?>
+                            <li><a href="https://gitlab.com/<?= $gl ?>" class="my-gitlab"><i class="fa fa-gitlab"></i></a></li>
+                            <?php endif; ?>
+                            <li><a href="<?= bloginfo('rss_url') ?>" class="my-rss"><i class="fa fa-rss"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
 						<div class="clearfix" id="logo-bar">
 							<div class="container">
 								<div class="row">
