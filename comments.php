@@ -28,9 +28,7 @@ if ( post_password_required() ) {
 		<h2 class="comments-title">
 			<?php
 				printf( // WPCS: XSS OK.
-					esc_html( _nx( 'One thought on &ldquo;%2$s&rdquo;', '%1$s thoughts on &ldquo;%2$s&rdquo;', get_comments_number(), 'comments title', 'koffisani' ) ),
-					number_format_i18n( get_comments_number() ),
-					'<span>' . get_the_title() . '</span>'
+                                        'Commentaires (' . number_format_i18n(get_comments_number()) . ')'
 				);
 			?>
 		</h2><!-- .comments-title -->
@@ -47,11 +45,12 @@ if ( post_password_required() ) {
 		</nav><!-- #comment-nav-above -->
 		<?php endif; // Check for comment navigation. ?>
 
-		<ol class="comment-list">
+		<ol id="comment-list">
 			<?php
 				wp_list_comments( array(
-					'style'      => 'ol',
+					'style'      => 'ul',
 					'short_ping' => true,
+                                        'avatar_size' => 74
 				) );
 			?>
 		</ol><!-- .comment-list -->

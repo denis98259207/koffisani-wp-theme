@@ -31,6 +31,9 @@ jQuery(document).ready(function ($) {
     $('.widget_meta ul li a').before('<i class="fa fa-angle-right"></i>');
     $('.widget_recent_comments ul li a:first-child').before('<i class="fa fa-angle-right"></i>');
 
+    $('.nav-previous a').addClass('col-md-5 btn btn-lg btn-default');
+    $('.nav-next a').addClass('col-md-5 btn btn-lg btn-default');
+    $('.nav-links').wrap("<div class='row' />");
     //$('.widget').addClass("clearfix");
 });
 
