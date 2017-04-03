@@ -34,6 +34,7 @@
 
 	<div class="entry-summary">
 		<?php the_excerpt(); ?>
+            <a class="btn btn-small btn-default" href="<?= the_permalink() ?>">Lire plus <i class="fa fa-angle-double-right"></i></a>
 	</div><!-- .entry-summary -->
 
 </article><!-- #post-## -->
