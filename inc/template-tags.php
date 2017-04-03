@@ -24,17 +24,51 @@ function koffisani_posted_on() {
 		esc_html( get_the_modified_date() )
 	);
 
-	$posted_on = sprintf(
-		esc_html_x( 'Posted on %s', 'post date', 'koffisani' ),
-		'<a href="' . esc_url( get_permalink() ) . '" rel="bookmark">' . $time_string . '</a>'
-	);
+	$posted_on = '<i class="fa fa-calendar"></i> <a href="' . esc_url( get_permalink() ) . '" rel="bookmark">' . $time_string . '</a>';
+	
 
-	$byline = sprintf(
-		esc_html_x( 'by %s', 'post author', 'koffisani' ),
-		'<span class="author vcard"><a class="url fn n" href="' . esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ) . '">' . esc_html( get_the_author() ) . '</a></span>'
-	);
+	$byline = '<i class="fa fa-user"></i> <a class="url fn n" href="' . esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ) . '">' . esc_html( get_the_author() ) . '</a>';
 
-	echo '<span class="posted-on">' . $posted_on . '</span><span class="byline"> ' . $byline . '</span>'; // WPCS: XSS OK.
+        
+        $tags = "";
+	// Hide category and tag text for pages.
+	if ( 'post' === get_post_type() ) {
+		/* translators: used between list items, there is a space after the comma */
+		$categories_list = get_the_category_list( esc_html__( ', ', 'koffisani' ) );
+		if ( $categories_list && koffisani_categorized_blog() ) {
+			$tags = $categories_list ; // WPCS: XSS OK.
+		}
+
+		/* translators: used between list items, there is a space after the comma */
+		$tags_list = get_the_tag_list( '', esc_html__( ', ', 'koffisani' ) );
+		if ( $tags_list ) {
+			$tags =  $tags_list ; // WPCS: XSS OK.
+		}
+	}
+
+	if ( ! is_single() && ! post_password_required() && ( comments_open() || get_comments_number() ) ) {
+		echo '<span class="comments-link">';
+		/* translators: %s: post title */
+		comments_popup_link( sprintf( wp_kses( __( 'Leave a Comment<span class="screen-reader-text"> on %s</span>', 'koffisani' ), array( 'span' => array( 'class' => array() ) ) ), get_the_title() ) );
+		echo '</span>';
+	}
+        $comm = get_comments_number();
+        echo '<span>' . $posted_on . '</span> <span> ' . $byline . '</span><span><i class="fa fa-folder-open"></i> ' . $tags . '</span>' ;
+        echo '<span><i class="fa fa-comments"></i> 
+                            <a href="' . get_comments_link() . '">' .  $comm ;
+        echo $comm > 1 ? ' Commentaires' : ' Commentaire' ;
+        echo "</a></span>";
+                        
+        edit_post_link(
+		sprintf(
+			/* translators: %s: Name of current post */
+			esc_html__( 'Edit %s', 'koffisani' ),
+			the_title( '<span class="screen-reader-text">"', '"</span>', false )
+		),
+		'<span class="edit-link"><i class="fa fa-edit"></i>',
+		'</span>'
+	); // WPCS: XSS OK.
+        echo "";
 
 }
 endif;

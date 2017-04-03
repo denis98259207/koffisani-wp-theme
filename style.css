@@ -1720,7 +1720,7 @@ a.back_home {
     #filter li a{padding:10px;}
 }
 
-.btn-wrap {
+.btn-wrap, .nav-next .btn, .nav-previous .btn {
     white-space: normal;
     word-wrap: break-word;
 }
@@ -1836,4 +1836,37 @@ a.back_home {
 }
 #site-searchform #searchsubmit:hover, .search-form .search-submit:hover{
     background: #383634 url(img/search-icon.png) no-repeat center 14px;
+}
+
+.metaInfo {
+    font-size: 0.9em;
+    margin-bottom: 7px;
+}
+.metaInfo > span {
+    display: inline-block;
+    padding-right: 15px;
+    color:#777;
+}
+.metaInfo > span > a {
+    color: #777;
+    font-family: lato;
+    font-size: 12.4px;
+}
+.metaInfo > span > a:hover {color:#3498DB;}
+.metaInfo {
+    font-size: 0.95em;
+    margin: 0 auto;
+    padding: 0 0 20px;
+}
+.metaInfo i {
+    margin-right: 3px;
+    color:#777;
+}
+
+a:hover {
+    color: #000 !important;
+}
+
+.footer_bottom a:hover {
+    color: #fff !important;
 }
