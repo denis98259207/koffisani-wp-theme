@@ -1847,7 +1847,7 @@ a.back_home {
     padding-right: 15px;
     color:#777;
 }
-.metaInfo > span > a {
+.metaInfo > span > a, .metaInfo > a {
     color: #777;
     font-family: lato;
     font-size: 12.4px;

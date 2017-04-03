@@ -30,13 +30,14 @@ function koffisani_posted_on() {
 	$byline = '<i class="fa fa-user"></i> <a class="url fn n" href="' . esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ) . '">' . esc_html( get_the_author() ) . '</a>';
 
         
+        $categories = "";
         $tags = "";
 	// Hide category and tag text for pages.
-	if ( 'post' === get_post_type() ) {
+	//if ( 'post' === get_post_type() ) {
 		/* translators: used between list items, there is a space after the comma */
 		$categories_list = get_the_category_list( esc_html__( ', ', 'koffisani' ) );
-		if ( $categories_list && koffisani_categorized_blog() ) {
-			$tags = $categories_list ; // WPCS: XSS OK.
+		if ( $categories_list /*&& koffisani_categorized_blog()*/ ) {
+			$categories = $categories_list ; // WPCS: XSS OK.
 		}
 
 		/* translators: used between list items, there is a space after the comma */
@@ -44,21 +45,28 @@ function koffisani_posted_on() {
 		if ( $tags_list ) {
 			$tags =  $tags_list ; // WPCS: XSS OK.
 		}
-	}
+	//}
 
-	if ( ! is_single() && ! post_password_required() && ( comments_open() || get_comments_number() ) ) {
-		echo '<span class="comments-link">';
-		/* translators: %s: post title */
-		comments_popup_link( sprintf( wp_kses( __( 'Leave a Comment<span class="screen-reader-text"> on %s</span>', 'koffisani' ), array( 'span' => array( 'class' => array() ) ) ), get_the_title() ) );
-		echo '</span>';
-	}
+	
         $comm = get_comments_number();
-        echo '<span>' . $posted_on . '</span> <span> ' . $byline . '</span><span><i class="fa fa-folder-open"></i> ' . $tags . '</span>' ;
-        echo '<span><i class="fa fa-comments"></i> 
-                            <a href="' . get_comments_link() . '">' .  $comm ;
-        echo $comm > 1 ? ' Commentaires' : ' Commentaire' ;
-        echo "</a></span>";
-                        
+        echo '<span>' . $posted_on . '</span> <span> ' . $byline . '</span>';
+        if(!empty($categories) && 'post' === get_post_type()) 
+            echo '<i class="fa fa-folder-open"></i> ' . $categories . ' ' ;
+        
+        if(!empty($tags) && 'post' == get_post_type())
+            echo '<i class="fa fa-tag"></i> ' . $tags . ' ' ;
+        if($comm) {
+            echo '<span><i class="fa fa-comments"></i> 
+                                <a href="' . get_comments_link() . '">' .  $comm ;
+            echo $comm > 1 ? ' Commentaires' : ' Commentaire' ;
+            echo "</a></span>";
+        }
+        if ( ! is_single() && ! post_password_required() && ( comments_open() || get_comments_number() ) ) {
+		echo '<span class="comments-link"><i class="fa fa-comment-o"></i>';
+		/* translators: %s: post title */
+		comments_popup_link( sprintf( wp_kses( __( 'Laisser un commentaire <span class="screen-reader-text"> on %s</span>', 'koffisani' ), array( 'span' => array( 'class' => array() ) ) ), get_the_title() ) );
+		echo '</span>';
+	}                
         edit_post_link(
 		sprintf(
 			/* translators: %s: Name of current post */
