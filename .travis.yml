@@ -22,6 +22,6 @@ matrix:
     - php: nightly
 
 before_script:
- - bash wp-tests/bin/install-wp-tests.sh test root '' localhost $WP_VERSION
+ - bash bin/install-wp-tests.sh test root '' localhost $WP_VERSION
 
 script: phpunit
