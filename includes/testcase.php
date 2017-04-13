@@ -261,9 +261,11 @@ class WP_UnitTestCase extends PHPUnit_Framework_TestCase {
 			self::$hooks_saved[ $key ] = $GLOBALS[ $key ];
 		}
 		self::$hooks_saved['wp_filter'] = array();
-		foreach ( $GLOBALS['wp_filter'] as $hook_name => $hook_object ) {
-			self::$hooks_saved['wp_filter'][ $hook_name ] = clone $hook_object;
-		}
+                if(isset($GLOBALS['wp-filter'])){
+                    foreach ( $GLOBALS['wp_filter'] as $hook_name => $hook_object ) {
+                            self::$hooks_saved['wp_filter'][ $hook_name ] = clone $hook_object;
+                    }
+                }
 	}
 
 	/**

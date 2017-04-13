@@ -8,7 +8,7 @@
 class Tests_Theme_ThemeDir extends WP_UnitTestCase {
 	function setUp() {
 		parent::setUp();
-		$this->theme_root = DIR_TESTDATA . '/themedir1';
+		$this->theme_root = DIR_TESTDATA . '/';
 
 		$this->orig_theme_dir = $GLOBALS['wp_theme_directories'];
 
@@ -169,7 +169,7 @@ class Tests_Theme_ThemeDir extends WP_UnitTestCase {
 	}
 
 	function test_get_theme_data_top_level() {
-		$theme_data = get_theme_data( DIR_TESTDATA . '/themedir1/theme1/style.css' );
+		$theme_data = get_theme_data( DIR_TESTDATA . '/style.css' );
 
 		$this->assertEquals( 'My Theme', $theme_data['Name'] );
 		$this->assertEquals( 'http://example.org/', $theme_data['URI'] );

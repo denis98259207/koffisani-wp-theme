@@ -4,7 +4,6 @@
  *
  * @todo Reuse the init/load code in init.php
  */
-require 'util.php';
 error_reporting( E_ALL & ~E_DEPRECATED & ~E_STRICT );
 
 $config_file_path = $argv[1];
@@ -24,7 +23,7 @@ tests_reset__SERVER();
 $PHP_SELF = $GLOBALS['PHP_SELF'] = $_SERVER['PHP_SELF'] = '/index.php';
 
 if ( !function_exists( 'add_action' ) ) {
-    require_once find_wp_config_path() . '/wp-settings.php';
+    require_once ABSPATH . '/wp-settings.php';
 
     require_once ABSPATH . '/wp-admin/includes/upgrade.php';
     require_once ABSPATH . '/wp-includes/wp-db.php';
@@ -35,7 +34,7 @@ global $phpmailer;
 require_once( dirname( __FILE__ ) . '/mock-mailer.php' );
 $phpmailer = new MockPHPMailer();
 
-register_theme_directory( dirname( __FILE__ ) . '/../data/themedir1' );
+register_theme_directory( dirname( __FILE__ ) . '/../' );
 
 /*
  * default_storage_engine and storage_engine are the same option, but storage_engine

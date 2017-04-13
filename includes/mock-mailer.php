@@ -1,12 +1,5 @@
 <?php
-require 'util.php';
-
-if ( !function_exists( 'add_action' ) ) {
-    require_once( find_wp_config_path() . '/wp-includes/class-phpmailer.php' );
-}
-
-//require ABSPATH . WPINC . '/class-phpmailer.php' ;
-
+require ABSPATH . '/wp-includes/class-phpmailer.php' ;
 
 class MockPHPMailer extends PHPMailer {
 	var $mock_sent = array();

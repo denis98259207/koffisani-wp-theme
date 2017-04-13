@@ -5,7 +5,7 @@
 class Tests_Theme_WPTheme extends WP_UnitTestCase {
 	function setUp() {
 		parent::setUp();
-		$this->theme_root = realpath( DIR_TESTDATA . '/themedir1' );
+		$this->theme_root = realpath( DIR_TESTDATA . '/koffisani' );
 
 		$this->orig_theme_dir = $GLOBALS['wp_theme_directories'];
 		$GLOBALS['wp_theme_directories'] = array( $this->theme_root );
