@@ -24,7 +24,7 @@ WP_TEST_URL=${WP_TEST_URL-http://localhost:12000}
 WP_PORT=${WP_TEST_URL##*:}
 
 WP_TESTS_DIR=${WP_TESTS_DIR-/tmp/wordpress-tests-lib/includes}
-WP_CORE_DIR=${WP_CORE_DIR-/tmp/wordpress/}
+WP_CORE_DIR=${WP_CORE_DIR-/tmp/wordpress}
 
 # Use these credentials for installing wordpress
 # Default test/test
