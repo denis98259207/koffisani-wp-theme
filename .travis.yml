@@ -1,5 +1,3 @@
-sudo: false
-
 language: php
 
 
@@ -13,16 +11,17 @@ php:
   - 5.4
 
 env:
-  - WP_PROJECT_TYPE=theme WP_VERSION=latest WP_MULTISITE=0 WP_TEST_URL=http://localhost:12000 WP_TEST_USER=test WP_TEST_PASS=test
+  - WP_PROJECT_TYPE=theme 
+  - WP_VERSION=latest WP_MULTISITE=0 
+  - WP_TEST_URL=http://localhost:12000 
+  - WP_TEST_USER=test 
+  - WP_TEST_PASS=test
 
 matrix:
   allow_failures:
     - php: nightly
 
 before_script:
- - git clone https://github.com/Seravo/wordpress-test-template wp-tests
  - bash wp-tests/bin/install-wp-tests.sh test root '' localhost $WP_VERSION
 
-script:
- - phpunit
- - cd wp-tests/spec && bundle exec rspec test.rb
+script: phpunit
