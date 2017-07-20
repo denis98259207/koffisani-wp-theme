@@ -61,10 +61,10 @@ function koffisani_posted_on() {
             echo $comm > 1 ? ' Commentaires' : ' Commentaire' ;
             echo "</a></span>";
         }
-        if ( ! is_single() && ! post_password_required() && ( comments_open() || get_comments_number() ) ) {
+        if (! post_password_required() && ( comments_open() || get_comments_number() ) ) {
 		echo '<span class="comments-link"><i class="fa fa-comment-o"></i>';
 		/* translators: %s: post title */
-		comments_popup_link( sprintf( wp_kses( __( 'Laisser un commentaire <span class="screen-reader-text"> on %s</span>', 'koffisani' ), array( 'span' => array( 'class' => array() ) ) ), get_the_title() ) );
+		echo "<a href='" . esc_url( get_permalink() ) . "#commentform' > Laisser un commentaire</a>";
 		echo '</span>';
 	}                
         edit_post_link(
