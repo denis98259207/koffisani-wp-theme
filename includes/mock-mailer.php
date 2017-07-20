@@ -1,5 +1,7 @@
 <?php
-require ABSPATH . '../wp-includes/class-phpmailer.php' ;
+//require ABSPATH . '../wp-includes/class-phpmailer.php' ;
+require 'util.php';
+require find_wp_config_path () . "/wp-includes/class-phpmailer.php";
 
 class MockPHPMailer extends PHPMailer {
 	var $mock_sent = array();
