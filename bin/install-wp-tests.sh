@@ -126,6 +126,7 @@ link_this_project() {
   cd $DIR
   local FOLDER_PATH=$(dirname $DIR)
   local FOLDER_NAME=$(basename $FOLDER_PATH)
+  local THEME_NAME=$(basename $DIR)
   case $WP_PROJECT_TYPE in
     'plugin' )
         ln -s $FOLDER_PATH $WP_CORE_DIR/wp-content/plugins/$FOLDER_NAME
@@ -133,7 +134,7 @@ link_this_project() {
         ;;
     'theme' )
         ls -al $FOLDER_PATH
-        ls -al $FOLDER_PATH/$FOLDER_NAME
+        ls -al $FOLDER_PATH/$THEME_NAME
         ln -s $FOLDER_PATH $WP_CORE_DIR/wp-content/themes/$FOLDER_NAME
         ls -al $WP_CORE_DIR/wp-content/themes/$FOLDER_NAME
         php wp-cli.phar theme activate $FOLDER_NAME --path=$WP_CORE_DIR
