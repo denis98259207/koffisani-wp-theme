@@ -10,6 +10,7 @@ notifications:
 branches:
   only:
     - master
+    - unit-test-new
 
 php:
   - 5.3
