@@ -133,8 +133,6 @@ link_this_project() {
         php wp-cli.phar plugin activate --all --path=$WP_CORE_DIR
         ;;
     'theme' )
-        ls -al $FOLDER_PATH
-        ls -al $FOLDER_PATH/$THEME_NAME
         ln -s $FOLDER_PATH/$THEME_NAME $WP_CORE_DIR/wp-content/themes/$FOLDER_NAME
         ls -al $WP_CORE_DIR/wp-content/themes/$FOLDER_NAME
         php wp-cli.phar theme activate $FOLDER_NAME --path=$WP_CORE_DIR
