@@ -23,7 +23,7 @@
 						<p class="copyright">
 							<a href="<?php echo esc_url( __( 'https://wordpress.org/', 'koffisani' ) ); ?>"><?php printf( esc_html__( 'Proudly powered by %s', 'koffisani' ), 'WordPress' ); ?></a>
 							<span class="sep"> | </span>
-							<?php printf( esc_html__( 'Theme: %1$s with %3$s by %2$s.', 'koffisani' ), '<a href="https://github.com/koffisani/koffisani-wp-theme" >koffisani</a>', '<a href="http://code.koffisani.ga/" rel="designer">Koffi Sani</a>', "<i class='fa fa-heart'></i>" ); ?>
+							<?php printf( esc_html__( 'Theme: %1$s with %3$s by %2$s.', 'koffisani' ), '<a href="https://github.com/koffisani/koffisani-wp-theme" >koffisani</a>', '<a href="http://code.koffisani.dev/" rel="designer">Koffi Sani</a>', "<i class='fa fa-heart'></i>" ); ?>
 						</p>
 					</div>
 
