@@ -45,7 +45,7 @@ jobs:
       env:
         DB_PORT: ${{ job.services.mysql.ports[3306] }}
       run: | 
-       bash bin/install-wp-tests.sh ${{ job.services.mysql.env.MYSQL_DATABASE }} root "" mysql latest true
+       bash bin/install-wp-tests.sh ${{ job.services.mysql.env.MYSQL_DATABASE }} root "" mysql
        vendor/bin/phpunit
        vendor/bin/phpcs --config-set installed_paths vendor/wp-coding-standards/wpcs,vendor/squizlabs/php_codesniffer,vendor/phpcompatibility/php-compatibility,vendor/phpcompatibility/phpcompatibility-wp,vendor/phpcompatibility/phpcompatibility-paragonie
        vendor/bin/phpcs --standard=WordPress --extensions=php --exclude=vendor .
