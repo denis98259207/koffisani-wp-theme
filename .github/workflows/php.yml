@@ -10,6 +10,17 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
+    
+    services:
+      mysql:
+        image: mysql:5.7
+        env:
+            MYSQL_ALLOW_EMPTY_PASSWORD: yes
+            MYSQL_DATABASE: wp_test_db
+        ports:
+            - 3306
+        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
+
 
     steps:
     - uses: actions/checkout@v2
@@ -31,7 +42,10 @@ jobs:
       run: composer install --prefer-dist --no-progress --no-suggest
 
     - name: Run test suite
+      env:
+        DB_PORT: ${{ job.services.mysql.ports[3306] }}
       run: | 
+       bash bin/install-wp-tests.sh ${{ job.services.mysql.env.MYSQL_DATABASE }} root "" mysql latest true
        vendor/bin/phpunit
        vendor/bin/phpcs --config-set installed_paths vendor/wp-coding-standards/wpcs,vendor/squizlabs/php_codesniffer,vendor/phpcompatibility/php-compatibility,vendor/phpcompatibility/phpcompatibility-wp,vendor/phpcompatibility/phpcompatibility-paragonie
        vendor/bin/phpcs --standard=WordPress --extensions=php --exclude=vendor .
