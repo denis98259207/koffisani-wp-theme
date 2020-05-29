@@ -24,11 +24,12 @@ if ( post_password_required() ) {
 
 	<?php
 	// You can start editing here -- including this comment!
-	if ( have_comments() ) : ?>
+	if ( have_comments() ) :
+		?>
 		<h2 class="comments-title">
 			<?php
 				printf( // WPCS: XSS OK.
-                                        'Commentaires (' . number_format_i18n(get_comments_number()) . ')'
+					'Commentaires (' . number_format_i18n( get_comments_number() ) . ')'
 				);
 			?>
 		</h2><!-- .comments-title -->
@@ -47,11 +48,13 @@ if ( post_password_required() ) {
 
 		<ol id="comment-list">
 			<?php
-				wp_list_comments( array(
-					'style'      => 'ul',
-					'short_ping' => true,
-                                        'avatar_size' => 74
-				) );
+				wp_list_comments(
+					array(
+						'style'       => 'ul',
+						'short_ping'  => true,
+						'avatar_size' => 74,
+					)
+				);
 			?>
 		</ol><!-- .comment-list -->
 
@@ -65,17 +68,18 @@ if ( post_password_required() ) {
 
 			</div><!-- .nav-links -->
 		</nav><!-- #comment-nav-below -->
-		<?php
+			<?php
 		endif; // Check for comment navigation.
 
 	endif; // Check for have_comments().
 
 
 	// If comments are closed and there are comments, let's leave a little note, shall we?
-	if ( ! comments_open() && get_comments_number() && post_type_supports( get_post_type(), 'comments' ) ) : ?>
+	if ( ! comments_open() && get_comments_number() && post_type_supports( get_post_type(), 'comments' ) ) :
+		?>
 
 		<p class="no-comments"><?php esc_html_e( 'Comments are closed.', 'koffisani' ); ?></p>
-	<?php
+		<?php
 	endif;
 
 	koffisani_comment_form();

@@ -11,17 +11,20 @@
 
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 	<header class="entry-header">
-		<?php the_title( sprintf( '<h2 class="entry-title"><a href="%s" rel="bookmark">', esc_url( get_permalink() ) ), '</a></h2>' ); 
+		<?php
+		the_title( sprintf( '<h2 class="entry-title"><a href="%s" rel="bookmark">', esc_url( get_permalink() ) ), '</a></h2>' );
 
-		if(has_post_thumbnail($id)) : ?>
-            <figure class="post_img">
-                <?php
-                        // Post thumbnail.
-                the_post_thumbnail();
-                
-                        ?>
-            </figure>
-        <?php endif;
+		if ( has_post_thumbnail( $id ) ) :
+			?>
+			<figure class="post_img">
+				<?php
+						// Post thumbnail.
+				the_post_thumbnail();
+
+				?>
+			</figure>
+			<?php
+		endif;
 
 		?>
 
@@ -34,7 +37,7 @@
 
 	<div class="entry-summary">
 		<?php the_excerpt(); ?>
-            <a class="btn btn-small btn-default" href="<?= the_permalink() ?>">Lire plus <i class="fa fa-angle-double-right"></i></a>
+			<a class="btn btn-small btn-default" href="<?php echo the_permalink(); ?>">Lire plus <i class="fa fa-angle-double-right"></i></a>
 	</div><!-- .entry-summary -->
 
 </article><!-- #post-## -->

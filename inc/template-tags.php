@@ -8,116 +8,115 @@
  */
 
 if ( ! function_exists( 'koffisani_posted_on' ) ) :
-/**
- * Prints HTML with meta information for the current post-date/time and author.
- */
-function koffisani_posted_on() {
-	$time_string = '<time class="entry-date published updated" datetime="%1$s">%2$s</time>';
-	if ( get_the_time( 'U' ) !== get_the_modified_time( 'U' ) ) {
-		$time_string = '<time class="entry-date published" datetime="%1$s">%2$s</time><time class="updated" datetime="%3$s">%4$s</time>';
-	}
+	/**
+	 * Prints HTML with meta information for the current post-date/time and author.
+	 */
+	function koffisani_posted_on() {
+		$time_string = '<time class="entry-date published updated" datetime="%1$s">%2$s</time>';
+		if ( get_the_time( 'U' ) !== get_the_modified_time( 'U' ) ) {
+			$time_string = '<time class="entry-date published" datetime="%1$s">%2$s</time><time class="updated" datetime="%3$s">%4$s</time>';
+		}
 
-	$time_string = sprintf( $time_string,
-		esc_attr( get_the_date( 'c' ) ),
-		esc_html( get_the_date() ),
-		esc_attr( get_the_modified_date( 'c' ) ),
-		esc_html( get_the_modified_date() )
-	);
+		$time_string = sprintf(
+			$time_string,
+			esc_attr( get_the_date( 'c' ) ),
+			esc_html( get_the_date() ),
+			esc_attr( get_the_modified_date( 'c' ) ),
+			esc_html( get_the_modified_date() )
+		);
 
-	$posted_on = '<i class="fa fa-calendar"></i> <a href="' . esc_url( get_permalink() ) . '" rel="bookmark">' . $time_string . '</a>';
-	
+		$posted_on = '<i class="fa fa-calendar"></i> <a href="' . esc_url( get_permalink() ) . '" rel="bookmark">' . $time_string . '</a>';
 
-	$byline = '<i class="fa fa-user"></i> <a class="url fn n" href="' . esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ) . '">' . esc_html( get_the_author() ) . '</a>';
+		$byline = '<i class="fa fa-user"></i> <a class="url fn n" href="' . esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ) . '">' . esc_html( get_the_author() ) . '</a>';
 
-        
-        $categories = "";
-        $tags = "";
-	// Hide category and tag text for pages.
-	//if ( 'post' === get_post_type() ) {
-		/* translators: used between list items, there is a space after the comma */
-		$categories_list = get_the_category_list( esc_html__( ', ', 'koffisani' ) );
+			$categories = '';
+			$tags       = '';
+		// Hide category and tag text for pages.
+		// if ( 'post' === get_post_type() ) {
+			/* translators: used between list items, there is a space after the comma */
+			$categories_list = get_the_category_list( esc_html__( ', ', 'koffisani' ) );
 		if ( $categories_list /*&& koffisani_categorized_blog()*/ ) {
-			$categories = $categories_list ; // WPCS: XSS OK.
+			$categories = $categories_list; // WPCS: XSS OK.
 		}
 
-		/* translators: used between list items, there is a space after the comma */
-		$tags_list = get_the_tag_list( '', esc_html__( ', ', 'koffisani' ) );
+			/* translators: used between list items, there is a space after the comma */
+			$tags_list = get_the_tag_list( '', esc_html__( ', ', 'koffisani' ) );
 		if ( $tags_list ) {
-			$tags =  $tags_list ; // WPCS: XSS OK.
+			$tags = $tags_list; // WPCS: XSS OK.
 		}
-	//}
+		// }
 
-	
-        $comm = get_comments_number();
-        echo '<span>' . $posted_on . '</span> <span> ' . $byline . '</span>';
-        if(!empty($categories) && 'post' === get_post_type()) 
-            echo '<i class="fa fa-folder-open"></i> ' . $categories . ' ' ;
-        
-        if(!empty($tags) && 'post' == get_post_type())
-            echo '<i class="fa fa-tag"></i> ' . $tags . ' ' ;
-        if($comm) {
-            echo '<span><i class="fa fa-comments"></i> 
-                                <a href="' . get_comments_link() . '">' .  $comm ;
-            echo $comm > 1 ? ' Commentaires' : ' Commentaire' ;
-            echo "</a></span>";
-        }
-        if (! post_password_required() && ( comments_open() || get_comments_number() ) ) {
-		echo '<span class="comments-link"><i class="fa fa-comment-o"></i>';
-		/* translators: %s: post title */
-		echo "<a href='" . esc_url( get_permalink() ) . "#commentform' > Laisser un commentaire</a>";
-		echo '</span>';
-	}                
-        edit_post_link(
-		sprintf(
-			/* translators: %s: Name of current post */
-			esc_html__( 'Edit %s', 'koffisani' ),
-			the_title( '<span class="screen-reader-text">"', '"</span>', false )
-		),
-		'<span class="edit-link"><i class="fa fa-edit"></i>',
-		'</span>'
-	); // WPCS: XSS OK.
-        echo "";
+			$comm = get_comments_number();
+			echo '<span>' . $posted_on . '</span> <span> ' . $byline . '</span>';
+		if ( ! empty( $categories ) && 'post' === get_post_type() ) {
+			echo '<i class="fa fa-folder-open"></i> ' . $categories . ' ';
+		}
 
-}
+		if ( ! empty( $tags ) && 'post' == get_post_type() ) {
+			echo '<i class="fa fa-tag"></i> ' . $tags . ' ';
+		}
+		if ( $comm ) {
+			echo '<span><i class="fa fa-comments"></i> 
+                                <a href="' . get_comments_link() . '">' . $comm;
+			echo $comm > 1 ? ' Commentaires' : ' Commentaire';
+			echo '</a></span>';
+		}
+		if ( ! post_password_required() && ( comments_open() || get_comments_number() ) ) {
+			echo '<span class="comments-link"><i class="fa fa-comment-o"></i>';
+			/* translators: %s: post title */
+			echo "<a href='" . esc_url( get_permalink() ) . "#commentform' > Laisser un commentaire</a>";
+			echo '</span>';
+		}
+			edit_post_link(
+				sprintf(
+				/* translators: %s: Name of current post */
+					esc_html__( 'Edit %s', 'koffisani' ),
+					the_title( '<span class="screen-reader-text">"', '"</span>', false )
+				),
+				'<span class="edit-link"><i class="fa fa-edit"></i>',
+				'</span>'
+			); // WPCS: XSS OK.
+			echo '';
+	}
 endif;
 
 if ( ! function_exists( 'koffisani_entry_footer' ) ) :
-/**
- * Prints HTML with meta information for the categories, tags and comments.
- */
-function koffisani_entry_footer() {
-	// Hide category and tag text for pages.
-	if ( 'post' === get_post_type() ) {
-		/* translators: used between list items, there is a space after the comma */
-		$categories_list = get_the_category_list( esc_html__( ', ', 'koffisani' ) );
-		if ( $categories_list && koffisani_categorized_blog() ) {
-			printf( '<span class="cat-links">' . esc_html__( 'Posted in %1$s', 'koffisani' ) . '</span>', $categories_list ); // WPCS: XSS OK.
+	/**
+	 * Prints HTML with meta information for the categories, tags and comments.
+	 */
+	function koffisani_entry_footer() {
+		// Hide category and tag text for pages.
+		if ( 'post' === get_post_type() ) {
+			/* translators: used between list items, there is a space after the comma */
+			$categories_list = get_the_category_list( esc_html__( ', ', 'koffisani' ) );
+			if ( $categories_list && koffisani_categorized_blog() ) {
+				printf( '<span class="cat-links">' . esc_html__( 'Posted in %1$s', 'koffisani' ) . '</span>', $categories_list ); // WPCS: XSS OK.
+			}
+
+			/* translators: used between list items, there is a space after the comma */
+			$tags_list = get_the_tag_list( '', esc_html__( ', ', 'koffisani' ) );
+			if ( $tags_list ) {
+				printf( '<span class="tags-links">' . esc_html__( 'Tagged %1$s', 'koffisani' ) . '</span>', $tags_list ); // WPCS: XSS OK.
+			}
 		}
 
-		/* translators: used between list items, there is a space after the comma */
-		$tags_list = get_the_tag_list( '', esc_html__( ', ', 'koffisani' ) );
-		if ( $tags_list ) {
-			printf( '<span class="tags-links">' . esc_html__( 'Tagged %1$s', 'koffisani' ) . '</span>', $tags_list ); // WPCS: XSS OK.
+		if ( ! is_single() && ! post_password_required() && ( comments_open() || get_comments_number() ) ) {
+			echo '<span class="comments-link">';
+			/* translators: %s: post title */
+			comments_popup_link( sprintf( wp_kses( __( 'Leave a Comment<span class="screen-reader-text"> on %s</span>', 'koffisani' ), array( 'span' => array( 'class' => array() ) ) ), get_the_title() ) );
+			echo '</span>';
 		}
-	}
 
-	if ( ! is_single() && ! post_password_required() && ( comments_open() || get_comments_number() ) ) {
-		echo '<span class="comments-link">';
-		/* translators: %s: post title */
-		comments_popup_link( sprintf( wp_kses( __( 'Leave a Comment<span class="screen-reader-text"> on %s</span>', 'koffisani' ), array( 'span' => array( 'class' => array() ) ) ), get_the_title() ) );
-		echo '</span>';
-	}
-
-	edit_post_link(
-		sprintf(
+		edit_post_link(
+			sprintf(
 			/* translators: %s: Name of current post */
-			esc_html__( 'Edit %s', 'koffisani' ),
-			the_title( '<span class="screen-reader-text">"', '"</span>', false )
-		),
-		'<span class="edit-link">',
-		'</span>'
-	);
-}
+				esc_html__( 'Edit %s', 'koffisani' ),
+				the_title( '<span class="screen-reader-text">"', '"</span>', false )
+			),
+			'<span class="edit-link">',
+			'</span>'
+		);
+	}
 endif;
 
 /**
@@ -128,12 +127,14 @@ endif;
 function koffisani_categorized_blog() {
 	if ( false === ( $all_the_cool_cats = get_transient( 'koffisani_categories' ) ) ) {
 		// Create an array of all the categories that are attached to posts.
-		$all_the_cool_cats = get_categories( array(
-			'fields'     => 'ids',
-			'hide_empty' => 1,
-			// We only need to know if there is more than one category.
-			'number'     => 2,
-		) );
+		$all_the_cool_cats = get_categories(
+			array(
+				'fields'     => 'ids',
+				'hide_empty' => 1,
+				// We only need to know if there is more than one category.
+				'number'     => 2,
+			)
+		);
 
 		// Count the number of categories that are attached to the posts.
 		$all_the_cool_cats = count( $all_the_cool_cats );
@@ -161,7 +162,7 @@ function koffisani_category_transient_flusher() {
 	delete_transient( 'koffisani_categories' );
 }
 add_action( 'edit_category', 'koffisani_category_transient_flusher' );
-add_action( 'save_post',     'koffisani_category_transient_flusher' );
+add_action( 'save_post', 'koffisani_category_transient_flusher' );
 
 /**
  * Output a complete commenting form for use within a template.
@@ -224,34 +225,36 @@ add_action( 'save_post',     'koffisani_category_transient_flusher' );
  * @param int|WP_Post $post_id Post ID or WP_Post object to generate the form for. Default current post.
  */
 function koffisani_comment_form( $args = array(), $post_id = null ) {
-	if ( null === $post_id )
+	if ( null === $post_id ) {
 		$post_id = get_the_ID();
+	}
 
-	$commenter = wp_get_current_commenter();
-	$user = wp_get_current_user();
+	$commenter     = wp_get_current_commenter();
+	$user          = wp_get_current_user();
 	$user_identity = $user->exists() ? $user->display_name : '';
 
 	$args = wp_parse_args( $args );
-	if ( ! isset( $args['format'] ) )
+	if ( ! isset( $args['format'] ) ) {
 		$args['format'] = current_theme_supports( 'html5', 'comment-form' ) ? 'html5' : 'xhtml';
+	}
 
 	$req      = get_option( 'require_name_email' );
 	$aria_req = ( $req ? " aria-required='true'" : '' );
 	$html_req = ( $req ? " required='required'" : '' );
 	$html5    = 'html5' === $args['format'];
-        
-        $nameplaceholder = $req ? "Nom*" : "Nom";
-        $emailplaceholder = $req ? "E-mail*" : "E-mail";
-	$fields   =  array(
+
+		$nameplaceholder  = $req ? 'Nom*' : 'Nom';
+		$emailplaceholder = $req ? 'E-mail*' : 'E-mail';
+	$fields               = array(
 		'author' => '<div class="row"><div class="col-sm-4">'
-            . '<input id="author" name="author" class="col-lg-4 col-md-4 form-control" placeholder="' . $nameplaceholder . '" type="text" value="' . esc_attr( $commenter['comment_author'] ) . '" size="30" maxlength="245"' . $aria_req . $html_req . ' /></div>',
+			. '<input id="author" name="author" class="col-lg-4 col-md-4 form-control" placeholder="' . $nameplaceholder . '" type="text" value="' . esc_attr( $commenter['comment_author'] ) . '" size="30" maxlength="245"' . $aria_req . $html_req . ' /></div>',
 		'email'  => '<div class="col-sm-4">'
-            . '<input id="email" name="email" class="col-lg-4 col-md-4 form-control" placeholder="'. $emailplaceholder . '" ' . ( $html5 ? 'type="email"' : 'type="text"' ) . ' value="' . esc_attr(  $commenter['comment_author_email'] ) . '" size="30" maxlength="100" aria-describedby="email-notes"' . $aria_req . $html_req  . ' /></div>',
+			. '<input id="email" name="email" class="col-lg-4 col-md-4 form-control" placeholder="' . $emailplaceholder . '" ' . ( $html5 ? 'type="email"' : 'type="text"' ) . ' value="' . esc_attr( $commenter['comment_author_email'] ) . '" size="30" maxlength="100" aria-describedby="email-notes"' . $aria_req . $html_req . ' /></div>',
 		'url'    => '<div class="col-sm-4">'
-            . '<input id="url" name="url" class="col-lg-4 col-md-4 form-control" placeholder="Site web" ' . ( $html5 ? 'type="url"' : 'type="text"' ) . ' value="' . esc_attr( $commenter['comment_author_url'] ) . '" size="30" maxlength="200" /></div></div>',
+			. '<input id="url" name="url" class="col-lg-4 col-md-4 form-control" placeholder="Site web" ' . ( $html5 ? 'type="url"' : 'type="text"' ) . ' value="' . esc_attr( $commenter['comment_author_url'] ) . '" size="30" maxlength="200" /></div></div>',
 	);
 
-	$required_text = sprintf( ' ' . __('Required fields are marked %s'), '<span class="required">*</span>' );
+	$required_text = sprintf( ' ' . __( 'Required fields are marked %s' ), '<span class="required">*</span>' );
 
 	/**
 	 * Filter the default comment form fields.
@@ -260,27 +263,27 @@ function koffisani_comment_form( $args = array(), $post_id = null ) {
 	 *
 	 * @param array $fields The default comment fields.
 	 */
-	$fields = apply_filters( 'comment_form_default_fields', $fields );
+	$fields   = apply_filters( 'comment_form_default_fields', $fields );
 	$defaults = array(
 		'fields'               => $fields,
 		'comment_field'        => '<p class="comment-form-comment"><label for="comment">' . _x( 'Comment', 'noun' ) . '</label> <p><textarea id="comment" name="comment" class="form-control" cols="45" rows="8" maxlength="65525" aria-required="true" required="required"></textarea></p></p>',
 		/** This filter is documented in wp-includes/link-template.php */
 		'must_log_in'          => '<p class="must-log-in">' . sprintf(
-		                              /* translators: %s: login URL */
-		                              __( 'You must be <a href="%s">logged in</a> to post a comment.' ),
-		                              wp_login_url( apply_filters( 'the_permalink', get_permalink( $post_id ) ) )
-		                          ) . '</p>',
+									  /* translators: %s: login URL */
+			__( 'You must be <a href="%s">logged in</a> to post a comment.' ),
+			wp_login_url( apply_filters( 'the_permalink', get_permalink( $post_id ) ) )
+		) . '</p>',
 		/** This filter is documented in wp-includes/link-template.php */
 		'logged_in_as'         => '<p class="logged-in-as">' . sprintf(
-		                              /* translators: 1: edit user link, 2: accessibility text, 3: user name, 4: logout URL */
-		                              __( '<a href="%1$s" aria-label="%2$s">Logged in as %3$s</a>. <a href="%4$s">Log out?</a>' ),
-		                              get_edit_user_link(),
-		                              /* translators: %s: user name */
-		                              esc_attr( sprintf( __( 'Logged in as %s. Edit your profile.' ), $user_identity ) ),
-		                              $user_identity,
-		                              wp_logout_url( apply_filters( 'the_permalink', get_permalink( $post_id ) ) )
-		                          ) . '</p>',
-		'comment_notes_before' => '<p class="comment-notes"><span id="email-notes">' . __( 'Your email address will not be published.' ) . '</span>'. ( $req ? $required_text : '' ) . '</p>',
+									  /* translators: 1: edit user link, 2: accessibility text, 3: user name, 4: logout URL */
+			__( '<a href="%1$s" aria-label="%2$s">Logged in as %3$s</a>. <a href="%4$s">Log out?</a>' ),
+			get_edit_user_link(),
+			/* translators: %s: user name */
+									  esc_attr( sprintf( __( 'Logged in as %s. Edit your profile.' ), $user_identity ) ),
+			$user_identity,
+			wp_logout_url( apply_filters( 'the_permalink', get_permalink( $post_id ) ) )
+		) . '</p>',
+		'comment_notes_before' => '<p class="comment-notes"><span id="email-notes">' . __( 'Your email address will not be published.' ) . '</span>' . ( $req ? $required_text : '' ) . '</p>',
 		'comment_notes_after'  => '',
 		'id_form'              => 'commentform',
 		'id_submit'            => 'submit',
@@ -337,7 +340,7 @@ function koffisani_comment_form( $args = array(), $post_id = null ) {
 
 			echo $args['title_reply_after'];
 
-			if ( get_option( 'comment_registration' ) && !is_user_logged_in() ) :
+			if ( get_option( 'comment_registration' ) && ! is_user_logged_in() ) :
 				echo $args['must_log_in'];
 				/**
 				 * Fires after the HTML-formatted 'must log in after' message in the comment form.
@@ -345,7 +348,8 @@ function koffisani_comment_form( $args = array(), $post_id = null ) {
 				 * @since 3.0.0
 				 */
 				do_action( 'comment_form_must_log_in_after' );
-			else : ?>
+			else :
+				?>
 				<form action="<?php echo site_url( '/wp-comments-post.php' ); ?>" method="post" id="<?php echo esc_attr( $args['id_form'] ); ?>" class="<?php echo esc_attr( $args['class_form'] ); ?>"<?php echo $html5 ? ' novalidate' : ''; ?>>
 					<?php
 					/**
@@ -380,11 +384,8 @@ function koffisani_comment_form( $args = array(), $post_id = null ) {
 						 *                              the display name, blank otherwise.
 						 */
 						do_action( 'comment_form_logged_in_after', $commenter, $user_identity );
-
 					else :
-
 						echo $args['comment_notes_before'];
-
 					endif;
 
 					// Prepare an array of all fields, including the textarea
@@ -407,7 +408,6 @@ function koffisani_comment_form( $args = array(), $post_id = null ) {
 					$last_field  = end( $comment_field_keys );
 
 					foreach ( $comment_fields as $name => $field ) {
-
 						if ( 'comment' === $name ) {
 
 							/**
@@ -420,9 +420,7 @@ function koffisani_comment_form( $args = array(), $post_id = null ) {
 							echo apply_filters( 'comment_form_field_comment', $field );
 
 							echo $args['comment_notes_after'];
-
 						} elseif ( ! is_user_logged_in() ) {
-
 							if ( $first_field === $name ) {
 								/**
 								 * Fires before the comment fields in the comment form, excluding the textarea.
@@ -569,13 +567,13 @@ function koffisani_get_search_form( $echo = true ) {
 	$search_form_template = locate_template( 'searchform.php' );
 	if ( '' != $search_form_template ) {
 		ob_start();
-		require( $search_form_template );
+		require $search_form_template;
 		$form = ob_get_clean();
 	} else {
 		if ( 'html5' == $format ) {
 			$form = '<form role="search" method="get" id="site-searchform" action="' . esc_url( home_url( '/' ) ) . '">
 				<div><input type="search" id="s" class="input-text" class="search-field" placeholder="' . esc_attr_x( 'Search &hellip;', 'placeholder' ) . '" value="' . get_search_query() . '" name="s" />
-				<input type="submit" id="searchsubmit" value="'. esc_attr_x( 'Search', 'submit button' ) .'" />
+				<input type="submit" id="searchsubmit" value="' . esc_attr_x( 'Search', 'submit button' ) . '" />
                                 </div>
                             </form>';
 		} else {
@@ -583,7 +581,7 @@ function koffisani_get_search_form( $echo = true ) {
 				<div>
 					<label class="screen-reader-text" for="s">' . _x( 'Search for:', 'label' ) . '</label>
 					<input type="text" value="' . get_search_query() . '" name="s" id="s" />
-					<input type="submit" id="searchsubmit" value="'. esc_attr_x( 'Search', 'submit button' ) .'" />
+					<input type="submit" id="searchsubmit" value="' . esc_attr_x( 'Search', 'submit button' ) . '" />
 				</div>
 			</form>';
 		}
@@ -598,11 +596,13 @@ function koffisani_get_search_form( $echo = true ) {
 	 */
 	$result = apply_filters( 'get_search_form', $form );
 
-	if ( null === $result )
+	if ( null === $result ) {
 		$result = $form;
+	}
 
-	if ( $echo )
+	if ( $echo ) {
 		echo $result;
-	else
+	} else {
 		return $result;
+	}
 }
